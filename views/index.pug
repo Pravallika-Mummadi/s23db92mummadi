@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p pravallika pug file
+  button(type="button",onclick="doReduce()" class="btn btn-danger") Press me
+
+  div(id="reduce") Reduce the value
+    script.
+      var count=20;
+      var change=-1;
+      function doReduce() {
+         count = count+change;
+         change--;
+         document.getElementById("reduce").innerHTML=`Count ${count} with change ${change}`
+       }
+  
