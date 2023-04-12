@@ -14,3 +14,5 @@ var router = express.Router();
 /* GET Books */
 router.get('/', Books_controlers.Book_view_all_Page );
 module.exports = router;
+
+// line 5 from Books.pug [  - let Book=[{Books_price:"234",Books_category :"Romcom",Books_name:"Beach Read"},{Books_price:"876",Books_category :"Thriller",Books_name:"Gone Girl"},{Books_price:"237",Books_category :"Fantasy",Books_name:"The Way of Kings"}]]
