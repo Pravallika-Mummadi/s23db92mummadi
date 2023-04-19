@@ -6,16 +6,16 @@ block content
   form(id='BooksForm', action="/resource/Books/", method="POST")
     br
     div.form-group
-        label.BooksAttr(for='Books_type') Books type
-        input#Bookstype(type='text', name='Books_type')
-    br
-    div.form-group
         label.BooksAttr(for='Books_price') Books price
         input#Booksprice(type='number', name='Books_price')
     br
     div.form-group
-        label.BooksAttr(for='Books_version') Books version
-        input#Booksversion(type='text', name='Books_version')
+        label.BooksAttr(for='Books_category') Books category
+        input#Bookscategory(type='text', name='Books_category')
+    br
+    div.form-group
+        label.BooksAttr(for='Books_name') Books name
+        input#Booksname(type='text', name='Books_name')
     br
     input(type="submit" class="btn btn-danger")
 

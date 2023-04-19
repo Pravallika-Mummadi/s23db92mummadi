@@ -85,6 +85,19 @@ exports.Books_update_put = async function (req, res) {
     }
 };
 
+// Handle a show one view with id specified by query
+exports.Books_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await Books.findById( req.query.id)
+    res.render('Booksdetail',
+   { title: 'Books Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
 
 exports.Book_view_all_Page = async function (req, res) {
     try {
@@ -123,5 +136,47 @@ exports.Books_delete_Page = async function(req, res) {
         res.send(`{'error': '${err}'}`);
     }
 };
+
+// Handle building the view for creating a Books.
+// No body, no in path parameter, no query.
+// Does not need to be async
+exports.Books_create_Page = function(req, res) {
+    console.log("create view")
+    try{
+    res.render('Bookscreate', { title: 'Books Create'});
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+
+   // Handle building the view for updating a Books.
+// query provides the id
+exports.Books_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await Books.findById(req.query.id)
+    res.render('Booksupdate', { title: 'Books Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
+
+   // Handle a delete one view with id from query
+exports.Books_delete_Page = async function(req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try{
+    result = await Books.findById(req.query.id)
+    res.render('Booksdelete', { title: 'Books Delete', toShow:
+   result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
 
    

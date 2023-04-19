@@ -1,47 +1,46 @@
-extends layout
+extends layout 
+ 
+block content 
+  h1= title 
 
-block content
-    h1= title
-
-    if (toShow == null)
-        h2 No instance to update
-    else
-        - let Booksid = toShow._id
-        - let Books_price = toShow.Books_price
-        - let Books_category = toShow.Books_category
-        - let Books_name = toShow.Books_name
-        
-
-            div.row(class='BooksAttr mb-2')
-            div.mr-1 ID is
-            div #{Booksid}
-            - let actionid = "/resource/Books/" + Booksid
-            form(id='BooksForm', action= actionid, method="PUT")
-            div.form-group
-                label.BooksAttr(for='Books_price') Books price
-                input#Books_price (type='text' name='Books_price', value= Books_price )
-            div.form-group
-                label.BooksAttr(for='Books_category') Books category
-                input#Books_category(type='number' name='Books_category', value= Books_category )
-            div.form-group
-                label.BooksAttr(for='Books_name') Books name
-                input#Books_name(type='text' name='Books_name', value= Books_name )
-            input(type="submit" class = "btn btn-danger")
-
-    script.
-            document.forms['BooksForm'].addEventListener('submit', (event) => {
-                event.preventDefault();
-                // TODO do something here to show user that form is being submitted
-                fetch(event.target.action, {
-                method: 'PUT',
-                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-                }).then((resp) => {
-                return resp.json(); // or resp.text() or whatever the server sends
-                }).then((body) => {
-                alert("Update succeded")
-                // TODO handle body
-                }).catch((error) => {
-                // TODO handle error
-                alert("Update failed " + error )
-                });
-            });
+  if (toShow == null) 
+    h2 No instance to update 
+  else 
+   - let id = toShow.id
+   - let Books_price = toShow.Books_price
+   - let Books_category = toShow.Books_category
+   - let Books_name = toShow.Books_name
+ 
+   div.row(class='mb-2') 
+     div.mr-1 ID is 
+     div #{id} 
+   - let actionid = "/resource/Books/" + id
+   form(id='BooksForm', action=actionid, method="PUT") 
+     div.form-group 
+         label.BooksAttr(for='Books_price') Books_price 
+         input#Books_price(type='number', name='Books_price', value=Books_price) 
+     div.form-group 
+         label.BooksAttr(for='Books_category') Books_category 
+         input#Books_category(type='text', name='Books_category',value=Books_category) 
+     div.form-group 
+         label.BooksAttr(for='Books_name') Books_name
+         input#price(type='text', name='Books_name', value=Books_name) 
+     input(type="submit") 
+ 
+   script. 
+     document.forms['BooksForm'].addEventListener('submit', (event) => { 
+       event.preventDefault(); 
+       // TODO do something here to show user that form is being submitted 
+       fetch(event.target.action, { 
+         method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+       }).then((resp) => { 
+         return resp.json();  // resp.json();  or whatever the server sends 
+       }).then((body) => { 
+         alert("Update succeded") 
+         // TODO handle body 
+       }).catch((error) => { 
+        // TODO handle error 
+         alert("Update failed " + error ) 
+       }); 
+     }); 

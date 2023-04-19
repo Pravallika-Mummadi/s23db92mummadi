@@ -1,0 +1,25 @@
+extends layout
+
+block content
+ h1= title
+
+ if (toShow == null) 
+    h2 No instance detail 
+ else 
+  - let id = toShow.id
+  - let Books_price = toShow.Books_price
+  - let Books_category = toShow.Books_category
+  - let Books_name = toShow.Books_name
+    div
+     div.row
+      div(class='BooksAttr mr-3') Books ID is:
+      div #{id}
+     div.row
+      div(class='BooksAttr mr-3') Books price is:
+      div #{Books_price}
+     div.row
+      div(class='BooksAttr mr-3') Books category is:
+      div #{Books_category}
+     div.row
+      div(class='BooksAttr mr-3') Books name is:
+      div #{Books_name}
