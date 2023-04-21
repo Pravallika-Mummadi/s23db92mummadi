@@ -2,16 +2,20 @@ extends layout
 
 block content
   h1= title
-    - let Book = results
-    div(class="container-fluid mt-3")
-    div(class="row")
-        each Books,index in Book
-                div(class="col-sm-3 bg-info m-2 p-4" onclick=`buy(${index})`) #{Books.Books_price} - #{Books.Books_category } - #{Books.Books_name}
-
-
-    script.
-     
-      function buy(itemNo)
-      {
-        alert(`You purchased Item ${itemNo+1}`)
-      }
+  - let Book = results
+  div(claass="container-fluid mt-3")
+   div(class="row m-1")
+    each Books,index in Book
+     - let destination = `dispatch(\"/Books/update?id=${Books._id}\")`
+     div(class="col-sm-3 bg-info m-2 p-4" onclick=`buy(${index})`) #{Books.Books_price} - #{Books.Books_category } - #{Books.Books_name}
+      button.btn( class="btn-primary ml-1", onclick= destination) Update
+  script.
+   function buy(itemNo)
+   {
+     alert(`You purchased Item ${itemNo+1}`)
+   }
+   function dispatch(path)
+   {
+     window.location.href=path
+   }
+   
