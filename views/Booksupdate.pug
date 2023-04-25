@@ -18,7 +18,7 @@ block content
    form(id='BooksForm', action=actionid, method="PUT") 
      div.form-group 
          label.BooksAttr(for='Books_price') Books_price 
-         input#Books_price(type='number', name='Books_price', value=Books_price) 
+         input#Books_price(type='number', name='Books_price', value=Books_price,min = 3,max = 1000) 
      div.form-group 
          label.BooksAttr(for='Books_category') Books_category 
          input#Books_category(type='text', name='Books_category',value=Books_category) 

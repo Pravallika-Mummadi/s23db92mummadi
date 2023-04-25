@@ -4,11 +4,19 @@ block content
   h1= title
   - let Book = results
   div(claass="container-fluid mt-3")
+   - let destination1 = `dispatch(\"/Books/create")`
+   button.btn( class="btn-primary ml-1", onclick= destination1) Create
    div(class="row m-1")
     each Books,index in Book
-     - let destination = `dispatch(\"/Books/update?id=${Books._id}\")`
+     - let destination2 = `dispatch(\"/Books/update?id=${Books._id}\")`
+     - let destination3 = `dispatch(\"/Books/delete?id=${Books._id}\")`
+     - let destination4 = `dispatch(\"/Books/details?id=${Books._id}\")`
      div(class="col-sm-3 bg-info m-2 p-4" onclick=`buy(${index})`) #{Books.Books_price} - #{Books.Books_category } - #{Books.Books_name}
-      button.btn( class="btn-primary ml-1", onclick= destination) Update
+      button.btn( class="btn-success ml-1", onclick= destination2) Update
+      br
+      button.btn( class="btn-danger ml-1", onclick= destination3) Delete
+      br
+      button.btn( class="btn-warning ml-1", onclick= destination4) Details
   script.
    function buy(itemNo)
    {
